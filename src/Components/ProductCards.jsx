@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 
 export default function ProductCards() {
+  const [count , setCount]= useState(0);
+  const handleCart=()=>{
+    setCount(count+1)
+    localStorage.setItem("cartCount", count+1)
+  }
+
   const cards = [
     {
       id: 1,
@@ -44,8 +51,9 @@ export default function ProductCards() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card) => (
             <div key={card.id} className="overflow-hidden rounded-md border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <Link to={`/products/${card.id}`}>
               <img className="h-52 w-full object-cover" src={card.image} alt={card.name} />
-
+              </Link>
               <div className="p-5">
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="text-lg font-semibold text-gray-900">{card.name}</h3>
@@ -56,7 +64,7 @@ export default function ProductCards() {
 
                 <div className="mt-5 flex items-center justify-between">
                   <p className="text-xl font-bold text-gray-900">₹{card.amount}</p>
-                  <button className="rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-700">
+                  <button onClick={handleCart} className="rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-700">
                     Add to Cart
                   </button>
                 </div>
