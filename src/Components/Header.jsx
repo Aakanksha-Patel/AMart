@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/hero.png';
 import useCart from '../hooks/useCart';
 
-export default function Header({isLoggedIn}) {
+export default function Header({isLoggedIn, setIsLoggedIn}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { cart } = useCart();
   const cartCount = Object.values(cart).reduce((total, item) => total + item.quantity, 0);
@@ -42,6 +42,7 @@ export default function Header({isLoggedIn}) {
             <button
             className="relative h-11 rounded-md border border-gray-200 px-5 text-sm font-bold text-gray-900 transition hover:border-gray-300 hover:bg-gray-50"
             type="button"
+            onClick={()=> setIsLoggedIn(false)}
           >
             Logout
           </button>

@@ -1,11 +1,19 @@
 import React from 'react'
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Loginpage({setIsLoggedIn}) {
+
+    const navigate=useNavigate();
+    const location=useLocation();
+    //redirect jab koi kisi page pe hai to login baad whi page aaye
+    const redirectPath= location.state?.from?.pathname|| '/';
 
     const handleLogin=(e)=>{
         e.preventDefault();
         setIsLoggedIn(true);
         alert('Login button clicked');
+
+        navigate(redirectPath, {replace:true});
     }
 
 
