@@ -14,6 +14,8 @@ npm install tailwindcss @tailwindcss/vite
 
 npm i react-icons 
 
+npm i react-toastify
+
 
 # Backend
 npm init
